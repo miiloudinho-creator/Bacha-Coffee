@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#2d3a2e" />
+    <title>Le Carnet du Chef — Mes ingrédients, mes recettes</title>
+    <meta
+      name="description"
+      content="Notez ce que vous avez dans votre cuisine, et un chef-nutritionniste vous propose des recettes adaptées."
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">🌿</span>
+        <div>
+          <h1>Le Carnet du Chef</h1>
+          <p class="tagline">Vos ingrédients · vos recettes · votre équilibre</p>
+        </div>
+      </div>
+      <div class="user-zone">
+        <label for="user-code">Carnet de</label>
+        <input
+          id="user-code"
+          type="text"
+          placeholder="votre code (ex : marc-cuisine)"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button id="user-save" type="button" class="btn btn-ghost">Charger</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="card add-card">
+        <h2>Ajouter un ingrédient</h2>
+        <p class="hint">
+          Tapez ce que vous avez chez vous. On classe automatiquement par catégorie. Tout
+          est sauvegardé dans votre carnet — pas besoin de tout retaper la prochaine fois.
+        </p>
+        <form id="add-form" class="add-row" autocomplete="off">
+          <input
+            id="ingredient-input"
+            type="text"
+            placeholder="Ex : tomates, riz, basilic, œufs…"
+            aria-label="Nom de l'ingrédient"
+            required
+          />
+          <input
+            id="quantity-input"
+            type="text"
+            placeholder="Quantité (optionnel)"
+            aria-label="Quantité"
+          />
+          <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
+        <p id="add-feedback" class="feedback" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="card pantry-card">
+        <div class="card-header">
+          <h2>Mon garde-manger</h2>
+          <div class="pantry-actions">
+            <span id="pantry-count" class="badge">0 ingrédient</span>
+            <button id="clear-all" type="button" class="btn btn-danger-ghost">
+              Tout vider
+            </button>
+          </div>
+        </div>
+        <div id="pantry" class="pantry"></div>
+      </section>
+
+      <section class="card generate-card">
+        <h2>Que puis-je cuisiner ce soir ?</h2>
+        <p class="hint">
+          Un chef cuisinier-nutritionniste (30 ans d'expérience) vous propose
+          <strong>3 recettes</strong> réalisables avec ce que vous avez, avec valeurs
+          nutritionnelles et conseils.
+        </p>
+        <div class="generate-controls">
+          <label class="select-label">
+            Type de repas
+            <select id="meal-type">
+              <option value="auto">Au choix du chef</option>
+              <option value="petit-dejeuner">Petit-déjeuner</option>
+              <option value="dejeuner">Déjeuner</option>
+              <option value="diner">Dîner</option>
+              <option value="snack">En-cas / Snack</option>
+              <option value="dessert">Dessert</option>
+            </select>
+          </label>
+          <label class="select-label">
+            Régime
+            <select id="diet">
+              <option value="aucun">Aucune restriction</option>
+              <option value="vegetarien">Végétarien</option>
+              <option value="vegan">Végétalien</option>
+              <option value="sans-gluten">Sans gluten</option>
+              <option value="sans-lactose">Sans lactose</option>
+              <option value="leger">Léger / faible en calories</option>
+              <option value="proteine">Riche en protéines</option>
+            </select>
+          </label>
+          <label class="select-label">
+            Temps dispo
+            <select id="time-budget">
+              <option value="rapide">≤ 20 min</option>
+              <option value="moyen" selected>≤ 45 min</option>
+              <option value="long">Peu importe</option>
+            </select>
+          </label>
+          <button id="generate" type="button" class="btn btn-primary btn-large">
+            Générer mes recettes
+          </button>
+        </div>
+        <p id="generate-feedback" class="feedback" role="status" aria-live="polite"></p>
+      </section>
+
+      <section id="recipes-section" class="recipes-section" hidden>
+        <h2>Vos recettes</h2>
+        <div id="recipes"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Carnet personnel · données stockées sur Cloudflare KV · recettes générées par
+        Workers AI (Llama).
+      </p>
+    </footer>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

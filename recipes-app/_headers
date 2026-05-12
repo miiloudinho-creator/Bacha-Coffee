@@ -1,0 +1,11 @@
+/api/*
+  Cache-Control: no-store
+
+/*.js
+  Cache-Control: public, max-age=300, must-revalidate
+
+/*.css
+  Cache-Control: public, max-age=300, must-revalidate
+
+/
+  Cache-Control: no-cache
