@@ -1,0 +1,14 @@
+# Build artifacts (zip pour déploiement manuel Cloudflare Pages)
+carnet-du-chef.zip
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Node
+node_modules/
